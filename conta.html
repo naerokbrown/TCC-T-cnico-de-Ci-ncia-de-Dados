@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conta | BlueMechanicalStore</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyP5iLw4H7O9tB0oT9E+HlGv0n/N/z2vJ2u+m4R5x7A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body onload="login()">
+    <div class="header">
+       <div class="container">
+        <div class="navbar">
+            <div class="logo">
+                <img src="Images/logo-190x112.png" alt="BlueMechanicalStore logo" width="150px">
+            </div>
+            <nav>
+                <ul id="MenuItems">
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="produtos.html">Produtos</a></li>
+                    <li><a href="#">Sobre</a></li>
+                    <li><a href="#">Contato</a></li>
+                    <li><a href="conta.html">Conta</a></li> 
+                </ul>
+            </nav>
+            <a href="carrinho.html">
+                <img src="Images/cart.png" alt="carrinho de compras" width="30px" height="30px">
+            </a>
+            <img src="Images/menu.png" class="menu-icon" onclick="menutoggle()" alt="Menu">
+        </div>
+    </div>
+</div>
+    <div class="account-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-2 info-col">
+                    <div class="info-content">
+                        <h2>Bem-vindo(a) de Volta! 🛠️</h2>
+                        <p>Entre para acessar seu painel, histórico de pedidos e promoções exclusivas.</p>
+                        <i class="fa-solid fa-car-wrench info-icon"></i> 
+                    </div>
+                </div>
+
+                <div class="col-2 form-col">
+                    <div class="form-container">
+                        <div class="form-btn">
+                            <span onclick="login()">Login</span>
+                            <span onclick="register()">Registro</span>
+                            <hr id="Indicator">
+                        </div>
+
+                        <form id="LoginForm" action="#" method="POST">
+                            <input type="email" placeholder="E-mail" required>
+                            <input type="password" placeholder="Senha" required>
+                            <button type="submit" class="btn">ENTRAR</button>
+                            <a href="#">Esqueci a Senha</a>
+                        </form>
+
+                        <form id="RegForm" action="#" method="POST">
+                            <input type="text" placeholder="Nome Completo" required>
+                            <input type="email" placeholder="E-mail" required>
+                            <input type="tel" placeholder="Telefone (Opcional)">
+                            <input type="password" placeholder="Senha" required>
+                            <input type="password" placeholder="Confirmar Senha" required>
+                            <button type="submit" class="btn">CRIAR CONTA</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col-1">
+                    </div>
+                </div>
+                <div class="footer-col-2">
+                    <img src="Images/logo-final-da-page.png" alt="Logo Final Da Page">
+                    <p>Nosso objetivo é fornecer peças e acessórios automotivos de alta qualidade a preços acessíveis para todos.</p>
+                </div>
+                <div class="footer-col-3">
+                    <h3>Links Úteis</h3>
+                    <ul>
+                        <li>Cupons</li>
+                        <li>Blog Post</li>
+                        <li>Política de Devolução</li>
+                        <li>Junte-se a Afiliados</li>
+                    </ul>
+                </div>
+                <div class="footer-col-4">
+                    <h3>Siga-nos</h3>
+                    <ul>
+                        <li>Facebook</li>
+                        <li>Twitter</li>
+                        <li>Instagram</li>
+                        <li>YouTube</li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <p class="copyright">Copyright 2025 - BlueMechanicalStore</p>
+        </div>
+    </div>
+
+    <script>
+        // Funcionalidade do Menu Responsivo
+        var MenuItems = document.getElementById("MenuItems");
+        MenuItems.style.maxHeight = "0px";
+        function menutoggle() {
+            if (MenuItems.style.maxHeight == "0px") {
+                MenuItems.style.maxHeight = "200px";
+            } else {
+                MenuItems.style.maxHeight = "0px";
+            }
+        }
+
+        // Funcionalidade de Alternância de Formulário
+        var LoginForm = document.getElementById("LoginForm");
+        var RegForm = document.getElementById("RegForm");
+        var Indicator = document.getElementById("Indicator");
+        
+        // As posições de translação (translateX) devem coincidir com as definidas no style.css:
+        // LoginForm: left: 50px (visível se translateX(0px))
+        // RegForm: left: 350px (visível se translateX(0px))
+
+        // Para a transição funcionar corretamente, os valores de transform devem ser
+        // a diferença entre as posições LEFT definidas no CSS.
+        const FORM_SHIFT = 300; // 350px (RegForm) - 50px (LoginForm) = 300px
+        const INDICATOR_SHIFT = 100; // Largura do span no CSS
+
+        function register() {
+            // Move Login para a esquerda (50px - 300px = -250px)
+            LoginForm.style.transform = `translateX(-${FORM_SHIFT}px)`;
+            // Move Registro para a posição 50px (350px - 300px = 50px)
+            RegForm.style.transform = `translateX(-${FORM_SHIFT}px)`; 
+            // Indicador se move para a direita (100px)
+            Indicator.style.transform = `translateX(${INDICATOR_SHIFT}px)`;
+        }
+
+        function login() {
+            // Move Login para a posição 50px (posição original)
+            LoginForm.style.transform = "translateX(0px)"; 
+            // Move Registro para a direita (posição original 350px)
+            RegForm.style.transform = "translateX(0px)";
+            // Indicador se move para a esquerda (0px)
+            Indicator.style.transform = "translateX(0px)";
+        }
+    </script>
+</body>
+</html>
